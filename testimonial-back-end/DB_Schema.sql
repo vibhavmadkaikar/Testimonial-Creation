@@ -3,7 +3,7 @@ create database testimonialsdb;
 use testimonialsdb;
 
 create table users (
-	userid int,
+	userid int auto_increment,
     username varchar(255) not null,
     password varchar(255) not null,
     email varchar(255) not null,
@@ -14,7 +14,7 @@ create table users (
 
 create table testimonials
 (
-	testimonialid int,
+	testimonialid int auto_increment,
     rating int default(0),
     customername varchar(255) not null,
     picture blob,
@@ -29,7 +29,7 @@ create table testimonials
 create table customers
 ( 
 	testimonialid int,
-    customerid int,
+    customerid int auto_increment,
     password varchar(255) not null,
     customeremail varchar(255) not null,
     description text not null,
