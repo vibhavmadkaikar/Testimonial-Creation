@@ -1,5 +1,12 @@
 package com.testimonial.users.entity;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +16,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
+@DynamicInsert
+@DynamicUpdate
 public class Users {
 
 	@Id
@@ -51,8 +60,15 @@ public class Users {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String password) throws NoSuchAlgorithmException {
+
+		MessageDigest md = MessageDigest.getInstance("MD5");
+
+		byte[] messageDigest = md.digest(password.getBytes());
+
+		BigInteger bigInt = new BigInteger(1, messageDigest);
+
+		this.password = bigInt.toString(16);
 	}
 
 	public String getEmail() {

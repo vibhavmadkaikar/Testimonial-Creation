@@ -56,23 +56,31 @@ public class UsersServiceImp implements UsersService {
 	@Override
 	public boolean deleteUsers(Integer userId) {
 		if (repository.existsById(userId)) {
-	        repository.deleteById(userId);
-	        return true;
-	    } else {
-	        return false;
-	    }
+			Users deleteUsers = repository.findById(userId).get();
+			UsersDto dto = new UsersDto();
+			
+			BeanUtils.copyProperties(dto, deleteUsers);
+			
+			repository.deleteById(userId);
+
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean updateUsers(Integer userId, UsersDto dto) {
 		Optional<Users> optionalUser = repository.findById(userId);
-	    if (optionalUser.isPresent()) {
-	        Users existingUser = optionalUser.get();
-	        BeanUtils.copyProperties(dto, existingUser);
-	        repository.save(existingUser);
-	        return true;
-	    } else {
-	        return false;
-	    }
+		if (optionalUser.isPresent()) {
+			Users existingUser = optionalUser.get();
+			BeanUtils.copyProperties(dto, existingUser);
+			
+			repository.save(existingUser);
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 }
