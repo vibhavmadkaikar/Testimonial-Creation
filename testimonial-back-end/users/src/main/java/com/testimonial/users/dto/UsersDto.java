@@ -1,5 +1,10 @@
 package com.testimonial.users.dto;
 
+import java.awt.im.InputContext;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class UsersDto {
 
 	private Integer userId;
