@@ -1,41 +1,44 @@
-create database testimonialsdb;
+CREATE DATABASE testimonialsdb;
 
-use testimonialsdb;
+USE Cascading;
 
-create table users (
-	userid int auto_increment,
-    username varchar(255) not null,
-    password varchar(255) not null,
-    email varchar(255) not null,
-    domain varchar(255) not null,
+USE testimonialsdb;
+
+CREATE TABLE users (
+	userid INT AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    domain VARCHAR(255) NOT NULL,
     
-    constraint pk_userid primary key(userid)
-    );
-
-create table testimonials
-(
-	testimonialid int auto_increment,
-    rating int default(0),
-    customername varchar(255) not null,
-    picture blob,
-    description varchar(255) not null,
-    customerabout varchar(255) not null,
-    createdat datetime not null,
-    isvisible boolean,
-	
-    constraint pk_testimonial_id primary key (testimonialid)
+    CONSTRAINT pk_userid PRIMARY KEY(userid)
     );
     
-create table customers
+    CREATE TABLE customers
 ( 
-	testimonialid int,
-    customerid int auto_increment,
-    password varchar(255) not null,
-    customeremail varchar(255) not null,
-    description text not null,
+	testimonialid INT,
+    customerid INT AUTO_INCREMENT,
+    password VARCHAR(255) NOT NULL,
+    customeremail VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
     
-    constraint fk_testimonial_id foreign key (testimonialid) references testimonials (testimonialid),
-    constraint pk_customer_id primary key (customerid)
+    CONSTRAINT pk_customer_id PRIMARY KEY (customerid)
 );
-    
+   
+
+CREATE TABLE testimonials
+(
+	testimonialid INT AUTO_INCREMENT,
+    rating INT DEFAULT 0,
+    customername VARCHAR(255) NOT NULL,
+    picture BLOB,
+    description VARCHAR(255) NOT NULL,
+    customerabout VARCHAR(255) NOT NULL,
+    createdat DATETIME NOT NULL,
+    isvisible BOOL,
+	
+    CONSTRAINT pk_testimonial_id PRIMARY KEY (testimonialid),
+    CONSTRAINT fk_customer_id FOREIGN KEY (customerid) REFERENCES customers (customerid) ON DELETE CASCADE
+    );
+	
     
