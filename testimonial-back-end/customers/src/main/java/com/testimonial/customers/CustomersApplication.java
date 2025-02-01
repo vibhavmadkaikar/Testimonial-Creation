@@ -1,4 +1,4 @@
-package com.testimonial.users;
+package com.testimonial.customers;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,26 +8,26 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@SpringBootApplication(scanBasePackages = {"com.testimonial.users.controller","com.testimonial.users.service"})
-@EntityScan(basePackages = {"com.testimonial.users.entity"})
-@EnableJpaRepositories(basePackages = {"com.testimonial.users.repository"})
-public class UsersApplication {
+@SpringBootApplication(scanBasePackages = { "com.testimonial.customers.controllers",
+		"com.testimonial.customers.services" })
+@EntityScan(basePackages = { "com.testimonial.customers.entity" })
+@EnableJpaRepositories(basePackages = { "com.testimonial.customers.repository" })
+public class CustomersApplication {
 
 	private final JdbcTemplate jdbcTemplate;
 
-    public UsersApplication(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-    
-	public static void main(String[] args) {
-		SpringApplication.run(UsersApplication.class, args);
+	public CustomersApplication(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
-	
+
+	public static void main(String[] args) {
+		SpringApplication.run(CustomersApplication.class, args);
+	}
+
 	@Bean
     public CommandLineRunner resetAutoIncrement() {
         return args -> {
             jdbcTemplate.execute("ALTER TABLE users AUTO_INCREMENT = 1000");
         };
-    }
-
+	}
 }
