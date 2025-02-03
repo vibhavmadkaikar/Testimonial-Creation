@@ -1,55 +1,54 @@
 package com.testimonial.testimonials.entity;
 
-
 import java.util.Date;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name="testimonials")
+@Table(name = "testimonials")
+@DynamicInsert
+@DynamicUpdate
 public class Testimonials {
 
-//	testimonialid int auto_increment,
-//    rating int default(0),
-//    customername varchar(255) not null,
-//    picture blob,
-//    description varchar(255) not null,
-//    customerabout varchar(255) not null,
-//    createdat datetime not null,
-//    isvisible boolean,
-	
 	@Id
-	@Column(name="testimonialid")
+	@Column(name = "testimonialid")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer testimonialId;
-	
-	@Column(name="rating")
+
+	@Column(name = "rating")
 	private Integer rating;
-	
-	@Column(name="customername")
+
+	@Column(name = "customername")
 	private String customerName;
-	
-	@Column(name="picture")
+
+	@Lob
+	@Column(name = "picture", columnDefinition = "BLOB")
 	private byte[] picture;
-	
-	@Column(name="description")
+
+	@Column(name = "description")
 	private String description;
-	
-	@Column(name="customerabout")
+
+	@Column(name = "customerabout")
 	private String customerAbout;
-	
+
 	@Column(name = "createdat")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDat;
-	
-	@Column(name="isvisible")
+
+	@Column(name = "isvisible")
 	private Boolean isVisible;
 
-	
 	public Testimonials() {
 		super();
 	}
@@ -102,7 +101,6 @@ public class Testimonials {
 		this.customerAbout = customerAbout;
 	}
 
-
 	public Date getCreateDat() {
 		return createDat;
 	}
@@ -118,8 +116,5 @@ public class Testimonials {
 	public void setIsVisible(Boolean isVisible) {
 		this.isVisible = isVisible;
 	}
-	
-	
 
-	
 }

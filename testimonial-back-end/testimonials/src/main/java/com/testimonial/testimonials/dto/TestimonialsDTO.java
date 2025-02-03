@@ -1,32 +1,27 @@
 package com.testimonial.testimonials.dto;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class TestimonialsDTO {
 
 	private Integer testimonialId;
-	
+
 	private Integer rating;
-	
+
 	private String customerName;
-	
+
 	private byte[] picture;
 
 	private String description;
-	
+
 	private String customerAbout;
-	
+
 	private Date createDat;
-	
+
 	private Boolean isVisible;
-	
+
 	public Integer getTestimonialId() {
 		return testimonialId;
-	}
-
-	public void setTestimonialId(Integer testimonialId) {
-		this.testimonialId = testimonialId;
 	}
 
 	public Integer getRating() {
@@ -69,7 +64,6 @@ public class TestimonialsDTO {
 		this.customerAbout = customerAbout;
 	}
 
-
 	public Date getCreateDat() {
 		return createDat;
 	}
@@ -86,6 +80,4 @@ public class TestimonialsDTO {
 		this.isVisible = isVisible;
 	}
 
-
-	
 }
