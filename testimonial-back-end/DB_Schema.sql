@@ -28,7 +28,6 @@ CREATE TABLE testimonials (
     userid INT,
     rating INT DEFAULT 0,
     customerid INT,
-    customername VARCHAR(255) NOT NULL,
     customerabout VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
     createdat DATETIME NOT NULL,
