@@ -20,13 +20,13 @@ import jakarta.persistence.Table;
 @DynamicUpdate
 public class Customers {
 
-	@Column(name = "testimonialid")
-	private Integer testimonialId;
-
 	@Id
 	@Column(name = "customerid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customerId;
+
+	@Column(name = "customername")
+	private String customerName;
 
 	@Column(name = "customeremail")
 	private String customerEmail;
@@ -37,12 +37,16 @@ public class Customers {
 	@Column(name = "description")
 	private String description;
 
-	public int getTestimonialId() {
-		return testimonialId;
-	}
-
 	public int getCustomerId() {
 		return customerId;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public String getCustomerEmail() {
@@ -78,6 +82,7 @@ public class Customers {
 
 	public Customers() {
 		super();
+		this.customerName = "";
 		this.customerEmail = "";
 		this.password = "";
 		this.description = "";

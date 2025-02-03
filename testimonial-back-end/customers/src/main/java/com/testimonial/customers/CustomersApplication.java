@@ -27,7 +27,7 @@ public class CustomersApplication {
 	@Bean
     public CommandLineRunner resetAutoIncrement() {
         return args -> {
-            jdbcTemplate.execute("ALTER TABLE users AUTO_INCREMENT = 1000");
+            jdbcTemplate.execute("ALTER TABLE users AUTO_INCREMENT = 100");
         };
 	}
 }

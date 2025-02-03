@@ -2,26 +2,22 @@ package com.testimonial.customers.dto;
 
 public class CustomersDTO {
 
-	Integer testimonialId;
 	Integer customerId;
-	String password;
+	String customerName;
 	String customerEmail;
+	String password;
 	String description;
 
-	public int getTestimonialId() {
-		return testimonialId;
-	}
-
-	public void setTestimonialId(int testimonialId) {
-		this.testimonialId = testimonialId;
-	}
-	
 	public int getCustomerId() {
 		return customerId;
 	}
-	
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public String getCustomerEmail() {
@@ -50,11 +46,10 @@ public class CustomersDTO {
 
 	public CustomersDTO() {
 		super();
+		this.customerName = "";
 		this.customerEmail = "";
 		this.password = "";
 		this.description = "";
 	}
-	
-	
 
 }

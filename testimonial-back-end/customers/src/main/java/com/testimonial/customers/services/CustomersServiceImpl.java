@@ -60,6 +60,10 @@ public class CustomersServiceImpl implements CustomersService {
 			// BeanUtils.copyProperties(dto, existingCustomer);
 			
 			//update working
+			if(dto.getCustomerName() != null)
+			{
+				existingCustomer.setCustomerName(dto.getCustomerName());
+			}
 			if(dto.getCustomerEmail() != null)
 			{
 				existingCustomer.setCustomerEmail(dto.getCustomerEmail());

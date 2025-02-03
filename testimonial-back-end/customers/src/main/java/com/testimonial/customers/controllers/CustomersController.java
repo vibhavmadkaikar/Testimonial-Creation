@@ -41,13 +41,13 @@ public class CustomersController {
 		return customersService.getCustomerDetails(customerId);
 	}
 	
-	@PutMapping("/UpdateCustomerDetails/{id}")
+	@PutMapping("/updateCustomerDetails/{id}")
 	public boolean updateCustomerDetails(@PathVariable("id") Integer customerId, @RequestBody CustomersDTO dto) throws NoSuchAlgorithmException
 	{
 		return customersService.updateCustomer(customerId, dto);
 	}
 	
-	@DeleteMapping("/DeleteCustomerDetails/{id}")
+	@DeleteMapping("/deleteCustomerDetails/{id}")
 	public boolean deleteUser(@PathVariable("id") Integer customerId)
 	{
 		return customersService.deleteCustomer(customerId);
