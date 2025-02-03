@@ -1,7 +1,5 @@
 CREATE DATABASE testimonialsdb;
 
-USE Cascading;
-
 USE testimonialsdb;
 
 CREATE TABLE users (
@@ -16,10 +14,10 @@ CREATE TABLE users (
     
     CREATE TABLE customers
 ( 
-	testimonialid INT,
-    customerid INT AUTO_INCREMENT,
-    password VARCHAR(255) NOT NULL,
+	customerid INT AUTO_INCREMENT,
+	customername VARCHAR(255) NOT NULL,
     customeremail VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     
     CONSTRAINT pk_customer_id PRIMARY KEY (customerid)
@@ -30,8 +28,8 @@ CREATE TABLE testimonials
 (
 	testimonialid INT AUTO_INCREMENT,
     rating INT DEFAULT 0,
-    customername VARCHAR(255) NOT NULL,
-    picture BLOB,
+	customerid INT,
+    
     description VARCHAR(255) NOT NULL,
     customerabout VARCHAR(255) NOT NULL,
     createdat DATETIME NOT NULL,
