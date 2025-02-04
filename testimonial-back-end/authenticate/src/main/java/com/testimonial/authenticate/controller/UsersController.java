@@ -18,7 +18,7 @@ import com.testimonial.authenticate.service.UsersService;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:5173/")
+//@CrossOrigin(origins = "http://localhost:5173")
 public class UsersController {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class UsersController {
 		return service.addUser(dto);
 	}
 
-	@DeleteMapping("/deleteUse/{id}")
+	@DeleteMapping("/deleteUser/{id}")
 	public boolean deleteUser(@PathVariable("id") Integer userId) {
 		return service.deleteUsers(userId);
 	}
