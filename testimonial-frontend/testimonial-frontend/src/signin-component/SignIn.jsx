@@ -1,11 +1,9 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom';
-import '../body/bodyStyle.css'
-import '../nav-style/style.css';
 
-function SignUp() {
+function SignIn() {
     return (
-        <>
+        <div>
             <div className="home-page">
                 <nav>
                     <div className="logo">Testimonial</div>
@@ -25,13 +23,13 @@ function SignUp() {
                 <div style={styles.card}>
                     <h2 style={styles.heading}>Choose Sign Up Type</h2>
                     <div style={styles.buttonContainer}>
-                        <Link to="/userSignUp" style={styles.link}>User Sign Up</Link>
-                        <Link to="/customerSignUp" style={styles.link}>Customer Sign Up</Link>
+                        <Link to="/userSignIn" style={styles.link}>User Sign In</Link>
+                        <Link to="/customerSignIn" style={styles.link}>Customer Sign In</Link>
                     </div>
                 </div>
             </div>
-        </>
-    );
+        </div>
+    )
 }
 
 const styles = {
@@ -51,13 +49,13 @@ const styles = {
     },
     buttonContainer: {
         display: 'flex',
-        flexDirection: 'column',  // Aligns buttons vertically
+        flexDirection: 'column',
         alignItems: 'center',
-        gap: '15px', // Adds space between buttons
+        gap: '15px',
     },
     link: {
         display: 'block',
-        width: '80%', // Ensures buttons are properly aligned
+        width: '80%',
         padding: '12px 20px',
         fontSize: '18px',
         color: '#fff',
@@ -75,4 +73,4 @@ const styles = {
     }
 };
 
-export default SignUp;
+export default SignIn
