@@ -14,7 +14,7 @@ function HomePage() {
           <li><a href="#">Integrations</a></li>
           <li><a href="#">Pricing</a></li>
           <li><a href="#">EN</a></li>
-          <li><a href="#" className="sign-in">Sign in</a></li>
+          <li><Link to="/signin" className="sign-in">Sign in</Link></li>
           <li><Link to="/signup" className="sign-up">Sign up</Link></li>
         </ul>
       </nav>

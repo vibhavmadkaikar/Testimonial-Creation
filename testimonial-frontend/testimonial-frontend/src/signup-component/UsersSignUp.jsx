@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import '../body/bodyStyle.css'
 import axios from "axios";
 
@@ -89,10 +90,8 @@ function UserSignUp() {
         </form>
 
         <div style={styles.signInText}>
-          Already have an account?{" "}
-          <a href="#" style={styles.link}>
-            Sign in
-          </a>
+          Already have an account?
+          <Link to="/userSignIn" style={styles.link}>Sign in</Link>
         </div>
       </div>
     </div>

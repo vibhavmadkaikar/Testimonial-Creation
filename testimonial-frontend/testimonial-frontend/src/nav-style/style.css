@@ -38,12 +38,17 @@
     text-decoration: none;
     color: #a9dce0;
     font-size: 1.2rem;
+    padding-left: 25px;
   }
 
   nav li a:hover {
     text-decoration: underline;
     color: #f73b0d;
     font-size: 1.3rem;
+  }
+
+  .sign-in {
+    padding-right: 10px;
   }
 
   .sign-up {
