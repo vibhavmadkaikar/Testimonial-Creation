@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../body/bodyStyle.css";
+import axios from "axios";
 
 function CustomerSignUp() {
   const [customerName, setCustomerName] = useState("");
@@ -12,7 +13,21 @@ function CustomerSignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    navigate("/login");
+    const customerData = {
+      customerName,
+      password,
+      customerEmail,
+      description,
+    };
+
+    try {
+      const response = await axios.post("http://localhost:4000/customers/addCustomer", customerData);
+      console.log(response.data);
+      navigate("/login");
+    } catch (error) {
+      console.error("There was an error!", error);
+    }
+
   };
 
   return (
