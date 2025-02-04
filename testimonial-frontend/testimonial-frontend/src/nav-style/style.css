@@ -49,8 +49,12 @@
   .sign-up {
     border: 2px solid rgb(54 54 112);
     padding: 15px;
-    background-color: rgb(85 85 240);
+    background-color: rgb(11 124 8);
     border-radius: 15px;
+  }
+
+  .sign-up:hover {
+    background-color: rgb(35, 154, 31);
   }
 
   .logout {
