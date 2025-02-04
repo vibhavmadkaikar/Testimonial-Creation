@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import "../nav-style/style.css"
+import '../body/bodyStyle.css'
 
 function Login() {
   return (
@@ -13,7 +14,7 @@ function Login() {
         </ul>
       </nav>
 
-      <div className='body'>
+      <div className='body-container'>
         fsd.
       </div>
     </div>
