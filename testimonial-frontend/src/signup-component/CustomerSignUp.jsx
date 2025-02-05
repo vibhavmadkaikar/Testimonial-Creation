@@ -21,17 +21,27 @@ function CustomerSignUp() {
     };
 
     try {
+<<<<<<< HEAD:testimonial-frontend/src/signup-component/CustomerSignUp.jsx
+      const response = await axios.post(
+        "http://localhost:4000/customers/addCustomer",
+        customerData
+      );
+=======
       const response = await axios.post("http://localhost:4000/customers/addCustomer", customerData);
+>>>>>>> main:testimonial-frontend/testimonial-frontend/src/signup-component/CustomerSignUp.jsx
       console.log(response.data);
       navigate("/login");
     } catch (error) {
       console.error("There was an error!", error);
     }
+<<<<<<< HEAD:testimonial-frontend/src/signup-component/CustomerSignUp.jsx
+=======
 
+>>>>>>> main:testimonial-frontend/testimonial-frontend/src/signup-component/CustomerSignUp.jsx
   };
 
   return (
-    <div className='body-container'>
+    <div className="body-container">
       <div style={styles.formContainer}>
         <h2 style={styles.heading}>Sign Up</h2>
 

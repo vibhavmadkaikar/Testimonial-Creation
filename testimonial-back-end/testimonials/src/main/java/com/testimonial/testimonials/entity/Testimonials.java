@@ -2,7 +2,6 @@ package com.testimonial.testimonials.entity;
 
 import java.time.LocalDateTime;
 
-
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -17,7 +16,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "testimonials")
 @DynamicInsert
@@ -25,36 +23,42 @@ import jakarta.persistence.Table;
 public class Testimonials {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "testimonialid")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer testimonialId;
+    private Integer testimonialId;
 
-	@Column(name = "rating")
-	private Integer rating;
-	
-	@ManyToOne
-	@JoinColumn(name = "userid", nullable = false)
-	private Integer userId;
+    @Column(name = "rating")
+    private Integer rating = 0;
 
-	@ManyToOne
-	@JoinColumn(name = "customerid", nullable = false) 
-	private Integer customerId;
+//    // Many-to-One relationship with User
+//    @ManyToOne
+//    @JoinColumn(name = "userid", nullable = false)
+//    private User user;
+//
+//    // Many-to-One relationship with Customer
+//    @ManyToOne
+//    @JoinColumn(name = "customerid", nullable = false)
+//    private Customer customer;
+    
+    // Store only ID, no FK constraint
+    @Column(name = "userid")
+    private Integer userId;
 
-	@Lob
-	@Column(name = "picture", columnDefinition = "BLOB")
-	private byte[] picture;
+    // Store only ID, no FK constraint
+    @Column(name = "customerid")
+    private Integer customerId;
 
-	@Column(name = "description")
-	private String description;
+    @Column(name = "customerabout")
+    private String customerAbout;
 
-	@Column(name = "customerabout")
-	private String customerAbout;
+    @Column(name = "description")
+    private String description;
 
-	  @Column(name = "createdat")
-	  private LocalDateTime createdAt;
+    @Column(name = "createdat")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-	@Column(name = "isvisible")
-	private Boolean isVisible;
+    @Column(name = "isvisible")
+    private Boolean isVisible = true;
 
 	public Testimonials() {
 		super();
@@ -76,8 +80,6 @@ public class Testimonials {
 		this.rating = rating;
 	}
 
-	
-
 	public Integer getCustomerId() {
 		return customerId;
 	}
@@ -86,13 +88,13 @@ public class Testimonials {
 		this.customerId = customerId;
 	}
 
-	public byte[] getPicture() {
-		return picture;
-	}
-
-	public void setPicture(byte[] picture) {
-		this.picture = picture;
-	}
+//	public byte[] getPicture() {
+//		return picture;
+//	}
+//
+//	public void setPicture(byte[] picture) {
+//		this.picture = picture;
+//	}
 
 	public String getDescription() {
 		return description;
@@ -111,13 +113,13 @@ public class Testimonials {
 	}
 
 	public LocalDateTime getCreatedAt() {
-	        return createdAt;
-	    }
+		return createdAt;
+	}
 
 	public void setCreatedAt(LocalDateTime createdAt) {
-	        this.createdAt = createdAt;
-	    }
-	
+		this.createdAt = createdAt;
+	}
+
 	public Boolean getIsVisible() {
 		return isVisible;
 	}
@@ -125,8 +127,8 @@ public class Testimonials {
 	public void setIsVisible(Boolean isVisible) {
 		this.isVisible = isVisible;
 	}
-	
-	 public Integer getUserId() {
+
+	public Integer getUserId() {
 		return userId;
 	}
 
@@ -135,8 +137,8 @@ public class Testimonials {
 	}
 
 	@PrePersist
-	    protected void onCreate() {
-	        this.createdAt = LocalDateTime.now();
-	    }
+	protected void onCreate() {
+		this.createdAt = LocalDateTime.now();
+	}
 
 }

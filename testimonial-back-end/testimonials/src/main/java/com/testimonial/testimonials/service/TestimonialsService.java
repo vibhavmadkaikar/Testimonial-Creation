@@ -1,6 +1,5 @@
 package com.testimonial.testimonials.service;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import com.testimonial.testimonials.dto.TestimonialsDTO;
@@ -16,5 +15,10 @@ public interface TestimonialsService {
 	public boolean updateTestimonials(Integer testimonialId, TestimonialsDTO dto);
 
 	public boolean deletetestimonials(Integer testimonialId);
+	
+	//
+	public TestimonialsDTO getTestimonialById(Integer testimonialId);
+	 
+	 
 
 }
