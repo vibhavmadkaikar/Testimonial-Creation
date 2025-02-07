@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../body/bodyStyle.css";
 import axios from "axios";
 
@@ -21,17 +22,19 @@ function CustomerSignUp() {
     };
 
     try {
-      const response = await axios.post("http://localhost:4000/customers/addCustomer", customerData);
+      const response = await axios.post(
+        "http://localhost:4000/customers/addCustomer",
+        customerData
+      );
       console.log(response.data);
       navigate("/login");
     } catch (error) {
       console.error("There was an error!", error);
     }
-
   };
 
   return (
-    <div className='body-container'>
+    <div className="body-container">
       <div style={styles.formContainer}>
         <h2 style={styles.heading}>Sign Up</h2>
 
@@ -90,10 +93,8 @@ function CustomerSignUp() {
         </form>
 
         <div style={styles.signInText}>
-          Already have an account?{" "}
-          <a href="#" style={styles.link}>
-            Sign in
-          </a>
+          Already have an account?
+          <Link to="/customerSignIn" style={styles.link}>Sign in</Link>
         </div>
       </div>
     </div>

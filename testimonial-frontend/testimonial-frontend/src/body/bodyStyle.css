@@ -1,7 +1,0 @@
-.body-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: linear-gradient(to right, rgb(165 211 250), rgb(197 213 214)););
-}

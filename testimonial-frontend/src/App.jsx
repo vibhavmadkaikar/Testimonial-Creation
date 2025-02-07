@@ -5,8 +5,10 @@ import Login from "./login-component/Login";
 import SignUp from "./signup-component/SignUp";
 import UserSignUp from "./signup-component/UsersSignUp";
 import CustomerSignUp from "./signup-component/CustomerSignUp";
+import TestimonialForm from "./testimonial-component/TestimonialForm";
 import SignIn from "./signin-component/SignIn";
 import UserSignIn from "./signin-component/UserSignIn";
+import CustomerSignIn from "./signin-component/CustomerSignIn";
 
 function App() {
   return (
@@ -18,8 +20,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/userSignUp" element={<UserSignUp />} />
           <Route path="/customerSignUp" element={<CustomerSignUp />} />
+          <Route path="/testimonial" element={<TestimonialForm />} />
+          <Route path="/testimonial" element={<TestimonialForm />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/userSignIn" element={<UserSignIn />} />
+          <Route path="/customerSignIn" element={<CustomerSignIn />} />
         </Routes>
       </Router>
     </>
