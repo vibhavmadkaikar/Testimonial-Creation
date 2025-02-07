@@ -22,7 +22,7 @@ function UserSignUp() {
     };
 
     try {
-        const response = await axios.post("http://localhost:4000/users/addUser", userData);
+        const response = await axios.post("http://localhost:4000/auth/user/register", userData);
         console.log(response.data);
         navigate("/login");
       } catch (error) {
@@ -91,7 +91,7 @@ function UserSignUp() {
 
         <div style={styles.signInText}>
           Already have an account?
-          <Link to="/userSignIn" style={styles.link}>Sign in</Link>
+          <Link to="/userSignIn" style={styles.link}>Sign up</Link>
         </div>
       </div>
     </div>
