@@ -21,19 +21,17 @@ function CustomerSignUp() {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:4000/customers/addCustomer",
-        customerData
-      );
+      const response = await axios.post("http://localhost:4000/customers/addCustomer", customerData);
       console.log(response.data);
       navigate("/login");
     } catch (error) {
       console.error("There was an error!", error);
     }
+
   };
 
   return (
-    <div className="body-container">
+    <div className='body-container'>
       <div style={styles.formContainer}>
         <h2 style={styles.heading}>Sign Up</h2>
 
