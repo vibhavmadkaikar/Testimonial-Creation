@@ -13,7 +13,7 @@ public interface TestimonialsService {
 
 	public List<TestimonialsDTO> allTestimonials();
 
-	public boolean updateTestimonials(Integer testimonialId, TestimonialsDTO dto)  throws NoSuchAlgorithmException;
+	public boolean updateTestimonials(Integer testimonialId, TestimonialsDTO dto);
 
 	public boolean deletetestimonials(Integer testimonialId);
 

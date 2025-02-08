@@ -1,7 +1,6 @@
 package com.testimonial.testimonials.dto;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class TestimonialsDTO {
 
@@ -17,7 +16,7 @@ public class TestimonialsDTO {
 
 	private String customerAbout;
 
-	private LocalDate createDat;
+	private LocalDateTime  createdAt;
 
 	private Boolean isVisible;
 
@@ -69,12 +68,12 @@ public class TestimonialsDTO {
 		this.customerAbout = customerAbout;
 	}
 
-	public LocalDate getCreateDat() {
-		return createDat;
+	public LocalDateTime  getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreateDat(LocalDate createDat) {
-		this.createDat = createDat;
+	public void setCreatedAt(LocalDateTime  createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public Boolean getIsVisible() {
