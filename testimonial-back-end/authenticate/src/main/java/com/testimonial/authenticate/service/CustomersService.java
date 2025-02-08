@@ -1,19 +1,25 @@
 package com.testimonial.authenticate.service;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import com.testimonial.authenticate.dto.CustomersDto;
 
 public interface CustomersService {
 
-	public boolean addCustomer(CustomersDto dto);
+	public boolean saveCustomer(CustomersDto dto);
 
-	public CustomersDto getCustomerDetails(Integer customerId);
+	public String generateCustomerToken(String customerName);
 
-	public List<CustomersDto> allCustomers();
+	public void validateToken(String token);
 
-	public boolean updateCustomer(Integer customerId, CustomersDto dto) throws NoSuchAlgorithmException;
+	public List<CustomersDto> getAllCustomers();
+
+	public CustomersDto getCustomerById(Integer customerId);
 
 	public boolean deleteCustomer(Integer customerId);
+
+	public boolean updateCustomer(Integer customerId, CustomersDto dto);
+
+	public CustomersDto findCustomer(String customerName);
+
 }
