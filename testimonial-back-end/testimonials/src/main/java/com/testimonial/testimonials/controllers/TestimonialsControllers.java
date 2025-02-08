@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -55,9 +56,25 @@ public class TestimonialsControllers {
 //		return testimonialsService.getTestimonialsByUser(username);
 //	}
 	
+//	@GetMapping("/getAllByUser/{username}")
+//	public List<TestimonialUserDTO> getAllTestimonialsByUser(@PathVariable("username") String username) {
+//		return testimonialsService.getTestimonialsByUser(username);
+//	}
+	
 	@GetMapping("/getAllByUser/{username}")
-	public List<TestimonialUserDTO> getAllTestimonialsByUser(@PathVariable("username") String username) {
-		return testimonialsService.getTestimonialsByUser(username);
+	public List<TestimonialUserDTO> getAllTestimonialsByUser(
+	    @PathVariable("username") String username,
+	    @RequestHeader("Authorization") String token) {
+	    System.out.println("Username: " + username); // Debugging
+	    System.out.println("Token: " + token); // Debugging
+	    return testimonialsService.getTestimonialsByUser(username, token);
+	}
+	
+	@GetMapping("/getAllByCustomerId/{customerId}")
+	public List<TestimonialUserDTO> getAllTestimonialsByCustomerId(
+	    @PathVariable("customerId") Integer customerId,
+	    @RequestHeader("Authorization") String token) {
+	    return testimonialsService.getTestimonialsByCustomerId(customerId, token);
 	}
 	
 //	@GetMapping("/getAllByUserId/{Id}")

@@ -3,97 +3,104 @@ package com.testimonial.testimonials.dto;
 import java.time.LocalDateTime;
 
 public class TestimonialUserDTO {
-	private Integer testimonialId;
-	private Integer userId;
-	private Integer customerId;
-	private String customerName;
-	private String customerAbout;
-	private Integer rating;
-	private String description;
-	private LocalDateTime createdAt;
+    private Integer testimonialId;
+    private Integer userId;
+    private Integer customerId;
+    private String customerName;
+    private String customerAbout;
+    private Integer rating;
+    private LocalDateTime createdAt;
+    private String description;
+    private Boolean isVisible;
+    private UsersDto user;
+    private CustomersDto customer;
 
-	private UsersDto user;
-	private CustomersDto customer;
+    // Getters and Setters
+    public Integer getTestimonialId() {
+        return testimonialId;
+    }
 
-	public UsersDto getUser() {
-		return user;
-	}
+    public void setTestimonialId(Integer testimonialId) {
+        this.testimonialId = testimonialId;
+    }
 
-	public void setUser(UsersDto user) {
-		this.user = user;
-	}
+    public Integer getUserId() {
+        return userId;
+    }
 
-	public CustomersDto getCustomer() {
-		return customer;
-	}
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-	public void setCustomer(CustomersDto customer) {
-		this.customer = customer;
-	}
+    public Integer getCustomerId() {
+        return customerId;
+    }
 
-	// Getters and Setters
-	public Integer getTestimonialId() {
-		return testimonialId;
-	}
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
 
-	public void setTestimonialId(Integer testimonialId) {
-		this.testimonialId = testimonialId;
-	}
+    public String getCustomerName() {
+        return customerName;
+    }
 
-	public String getCustomerName() {
-		return customerName;
-	}
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
+    public String getCustomerAbout() {
+        return customerAbout;
+    }
 
-	public String getCustomerAbout() {
-		return customerAbout;
-	}
+    public void setCustomerAbout(String customerAbout) {
+        this.customerAbout = customerAbout;
+    }
 
-	public void setCustomerAbout(String customerAbout) {
-		this.customerAbout = customerAbout;
-	}
+    public Integer getRating() {
+        return rating;
+    }
 
-	public Integer getRating() {
-		return rating;
-	}
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 
-	public void setRating(Integer rating) {
-		this.rating = rating;
-	}
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
+    public Boolean getIsVisible() {
+        return isVisible;
+    }
 
-	public Integer getUserId() {
-		return userId;
-	}
+    public void setIsVisible(Boolean isVisible) {
+        this.isVisible = isVisible;
+    }
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+    public UsersDto getUser() {
+        return user;
+    }
 
-	public Integer getCustomerId() {
-		return customerId;
-	}
+    public void setUser(UsersDto user) {
+        this.user = user;
+    }
 
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
-	}
+    public CustomersDto getCustomer() {
+        return customer;
+    }
 
+    public void setCustomer(CustomersDto customer) {
+        this.customer = customer;
+    }
 }

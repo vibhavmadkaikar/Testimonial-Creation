@@ -2,8 +2,13 @@ package com.testimonial.testimonials.service;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +27,9 @@ public class TestimonialsServiceImpl implements TestimonialsService {
 
 	@Autowired
 	TestimonialsRepository testimonialsRespository;
-	
+
 	@Autowired
-    private RestTemplate restTemplate;
+	private RestTemplate restTemplate;
 
 	@Override
 	public boolean addTestimonial(TestimonialsDTO dto) {
@@ -121,44 +126,88 @@ public class TestimonialsServiceImpl implements TestimonialsService {
 //		}
 //		return finalList;
 //	}
-	
+
+//	@Override
+//	public List<TestimonialUserDTO> getTestimonialsByUser(String username, String token) {
+//	    List<Object[]> results = testimonialsRespository.getAllTestimonialsByUser(username);
+//	    List<TestimonialUserDTO> testimonialsList = new ArrayList<>();
+//
+//	    for (Object[] row : results) {
+//	    	System.out.println(Arrays.toString(row));
+//	        TestimonialUserDTO dto = new TestimonialUserDTO();
+//
+//	        // Map the Object[] array to the DTO fields
+//	        dto.setTestimonialId((Integer) row[0]);  // testimonialid
+//	        dto.setUserId((Integer) row[1]);         // userid
+//	        dto.setCustomerId((Integer) row[2]);     // customerid
+//	        dto.setCustomerName((String) row[3]);    // customername
+//	        dto.setCustomerAbout((String) row[4]);   // customerabout
+//	        dto.setRating((Integer) row[5]);         // rating
+//	        dto.setCreatedAt(((Timestamp) row[6]).toLocalDateTime());  // createdat (convert Timestamp to LocalDateTime)
+//	        dto.setDescription((String) row[7]);     // description
+//	        dto.setIsVisible((Boolean) row[8]);      // isvisible
+//
+//	        // Fetch user details from authenticate-service
+//	        try {
+//	            if (dto.getUserId() != null) {
+//	                String userUri = "http://localhost:4000/auth/user/getUserById/" + dto.getUserId();
+//	                UsersDto userDTO = restTemplate.getForObject(userUri, UsersDto.class);
+//	                dto.setUser(userDTO);
+//	            }
+//	        } catch (Exception e) {
+//	            System.err.println("Error fetching user details: " + e.getMessage());
+//	        }
+//
+//	        // Fetch customer details from authenticate-service
+//	        try {
+//	            if (dto.getCustomerId() != null) {
+//	                String customerUri = "http://localhost:4000/auth/customer/getCustomerById/" + dto.getCustomerId();
+//	                CustomersDto customerDTO = restTemplate.getForObject(customerUri, CustomersDto.class);
+//	                dto.setCustomer(customerDTO);
+//	            }
+//	        } catch (Exception e) {
+//	            System.err.println("Error fetching customer details: " + e.getMessage());
+//	        }
+//
+//	        testimonialsList.add(dto);
+//	    }
+//	    return testimonialsList;
+//	}
 
 	@Override
-	public List<TestimonialUserDTO> getTestimonialsByUser(String username) {
+	public List<TestimonialUserDTO> getTestimonialsByUser(String username, String token) {
 	    List<Object[]> results = testimonialsRespository.getAllTestimonialsByUser(username);
+
 	    List<TestimonialUserDTO> testimonialsList = new ArrayList<>();
 
 	    for (Object[] row : results) {
 	        TestimonialUserDTO dto = new TestimonialUserDTO();
-	        
-	        // Correct Mapping:
-	        dto.setTestimonialId((Integer) row[0]);  // ✅ Testimonial ID
-	        dto.setUserId((Integer) row[1]);         // ✅ User ID
-	        dto.setCustomerId((Integer) row[2]);     // ✅ Customer ID
-	        dto.setCustomerName((String) row[3]);    // ✅ Customer Name (String)
-	        dto.setCustomerAbout((String) row[4]);   // ✅ Customer About (String)
-	        dto.setRating((Integer) row[5]);         // ✅ Rating (Integer)
-	        dto.setCreatedAt(((Timestamp) row[6]).toLocalDateTime());  // ✅ Convert Timestamp to LocalDateTime
-	        dto.setDescription((String) row[7]);     // ✅ Description (String)
+	        dto.setTestimonialId((Integer) row[0]);  
+	        dto.setUserId((Integer) row[1]);         
+	        dto.setCustomerId((Integer) row[2]);     
+	        dto.setCustomerName((String) row[3]);    
+	        dto.setCustomerAbout((String) row[4]);   
+	        dto.setRating((Integer) row[5]);         
+	        dto.setCreatedAt(((Timestamp) row[6]).toLocalDateTime());  
+	        dto.setDescription((String) row[7]);    
+	        dto.setIsVisible((Boolean) row[8]);      
 
-	        CustomersDto customerDTO = null;
-	        
-	        // Fetch user details from authenticate-service
 	        try {
 	            if (dto.getUserId() != null) {
 	                String userUri = "http://localhost:4000/auth/user/getUserById/" + dto.getUserId();
-	                UsersDto userDTO = restTemplate.getForObject(userUri, UsersDto.class);
+	                UsersDto userDTO = fetchUserDetails(userUri, token);
 	                dto.setUser(userDTO);
 	            }
 	        } catch (Exception e) {
 	            System.err.println("Error fetching user details: " + e.getMessage());
 	        }
 
-	        // Fetch customer details from authenticate-service
+	        // Fetch customer details with the token
 	        try {
 	            if (dto.getCustomerId() != null) {
-	            	String userUri = "http://localhost:4000/auth/user/getUserById/" + dto.getUserId();
-	            	String customerUri = "http://localhost:4000/auth/customer/getCustomerById/" + dto.getCustomerId();
+	                String customerUri = "http://localhost:4000/auth/customer/getCustomerById/" + dto.getCustomerId();
+	                System.out.println("Fetching customer details from: " + customerUri); 
+	                CustomersDto customerDTO = fetchCustomerDetails(customerUri, token);
 	                dto.setCustomer(customerDTO);
 	            }
 	        } catch (Exception e) {
@@ -170,6 +219,65 @@ public class TestimonialsServiceImpl implements TestimonialsService {
 	    return testimonialsList;
 	}
 
+	// Helper method to fetch user details with token
+	private UsersDto fetchUserDetails(String url, String token) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", token); // Include the token
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+		return restTemplate.exchange(url, HttpMethod.GET, entity, UsersDto.class).getBody();
+	}
 
+	// Helper method to fetch customer details with token
+	private CustomersDto fetchCustomerDetails(String url, String token) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", token); 
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+		return restTemplate.exchange(url, HttpMethod.GET, entity, CustomersDto.class).getBody();
+	}
 
+	@Override
+	public List<TestimonialUserDTO> getTestimonialsByCustomerId(Integer customerId, String token) {
+	    List<Object[]> results = testimonialsRespository.getAllTestimonialsByCustomerId(customerId);
+	    List<TestimonialUserDTO> testimonialsList = new ArrayList<>();
+
+	    for (Object[] row : results) {
+	        TestimonialUserDTO dto = new TestimonialUserDTO();
+
+	        // Map the Object[] array to the DTO fields
+	        dto.setTestimonialId((Integer) row[0]);  
+	        dto.setUserId((Integer) row[1]);         
+	        dto.setCustomerId((Integer) row[2]);     
+	        dto.setCustomerName((String) row[3]);   
+	        dto.setCustomerAbout((String) row[4]);   
+	        dto.setRating((Integer) row[5]);         
+	        dto.setCreatedAt(((Timestamp) row[6]).toLocalDateTime());  
+	        dto.setDescription((String) row[7]);     
+	        dto.setIsVisible((Boolean) row[8]);      
+
+	        // Fetch user details with the token
+	        try {
+	            if (dto.getUserId() != null) {
+	                String userUri = "http://localhost:4000/auth/user/getUserById/" + dto.getUserId();
+	                UsersDto userDTO = fetchUserDetails(userUri, token); 
+	                dto.setUser(userDTO);
+	            }
+	        } catch (Exception e) {
+	            System.err.println("Error fetching user details: " + e.getMessage());
+	        }
+
+	        // Fetch customer details with the token
+	        try {
+	            if (dto.getCustomerId() != null) {
+	                String customerUri = "http://localhost:4000/auth/customer/getCustomerById/" + dto.getCustomerId();
+	                CustomersDto customerDTO = fetchCustomerDetails(customerUri, token); 
+	                dto.setCustomer(customerDTO);
+	            }
+	        } catch (Exception e) {
+	            System.err.println("Error fetching customer details: " + e.getMessage());
+	        }
+
+	        testimonialsList.add(dto);
+	    }
+	    return testimonialsList;
+	}
 }

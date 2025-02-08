@@ -20,4 +20,10 @@ public interface TestimonialsRepository extends JpaRepository<Testimonials, Inte
 	@Query(value = "SELECT t FROM testimonials t WHERE t.userid =:userId", nativeQuery = true)
 	List<Testimonials> findByUserId(@Param("userId") Integer userId);
 
+	// Customer
+	@Query(value = "SELECT t.testimonialid, t.userid, t.customerid, c.customername, t.customerabout, t.rating, t.createdat, t.description, t.isvisible "
+			+ "FROM testimonials t " + "JOIN customers c ON t.customerid = c.customerid "
+			+ "WHERE t.customerid = :customerId", nativeQuery = true)
+	List<Object[]> getAllTestimonialsByCustomerId(@Param("customerId") Integer customerId);
+
 }
