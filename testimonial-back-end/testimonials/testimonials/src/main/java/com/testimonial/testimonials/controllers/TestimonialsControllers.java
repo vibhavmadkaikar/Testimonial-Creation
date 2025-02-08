@@ -24,31 +24,31 @@ public class TestimonialsControllers {
 	@Autowired
 	TestimonialsService testimonialsService;
 
-	@PostMapping("/addtestimonial")
+	@PostMapping("/create")
 	public boolean addCustomers(@RequestBody TestimonialsDTO dto)
 	{
 	return  testimonialsService.addTestimonial(dto);
 	}
 
-	@GetMapping("/allTestimonials")
+	@GetMapping("/getAll")
 	public List<TestimonialsDTO> allCustomers()
 	{
 	return testimonialsService.allTestimonials();
 	}
 
-	@GetMapping("/getTestimonialDetails/{id}")
+	@GetMapping("/getDetails/{id}")
 	public TestimonialsDTO getCustomerDetails(@PathVariable("id") Integer testimonialId)
 	{
 	return testimonialsService.getTestimonialDetails(testimonialId);
 	}
 
-	@PutMapping("/UpdateTestimonialDetails/{id}")
+	@PutMapping("/updateDetails/{id}")
 	public boolean updateCustomerDetails(@PathVariable("id") Integer testimonialId, @RequestBody TestimonialsDTO dto) throws NoSuchAlgorithmException
 	{
 	return testimonialsService.updateTestimonials(testimonialId, dto);
 	}
 
-	@DeleteMapping("/DeleteTestimonialDetails/{id}")
+	@DeleteMapping("/deleteDetails/{id}")
 	public boolean deleteUser(@PathVariable("id") Integer testimonialId)
 	{
 	return testimonialsService.deletetestimonials(testimonialId);

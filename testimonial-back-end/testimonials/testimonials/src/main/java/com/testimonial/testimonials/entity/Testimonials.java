@@ -1,5 +1,6 @@
 package com.testimonial.testimonials.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -22,15 +23,6 @@ import jakarta.persistence.TemporalType;
 @DynamicUpdate
 public class Testimonials {
 
-//	testimonialid int auto_increment,
-//    rating int default(0),
-//    customername varchar(255) not null,
-//    picture blob,
-//    description varchar(255) not null,
-//    customerabout varchar(255) not null,
-//    createdat datetime not null,
-//    isvisible boolean,
-
 	@Id
 	@Column(name = "testimonialid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,9 +37,6 @@ public class Testimonials {
 	@Column(name = "customerid")
 	private Integer customerId;
 
-//	@Column(name = "picture")
-//	private byte[] picture;
-
 	@Column(name = "description")
 	private String description;
 
@@ -56,7 +45,7 @@ public class Testimonials {
 
 	@Column(name = "createdat")
 	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime createDat;
+	private LocalDateTime createdAt;
 
 	@Column(name = "isvisible")
 	private Boolean isVisible;
@@ -115,11 +104,11 @@ public class Testimonials {
 	}
 
 		public LocalDateTime getCreatedAt() {
-	        return createDat;
+	        return createdAt;
 	    }
 	
-	public void setCreatedAt(LocalDateTime createDat) {
-	        this.createDat = createDat;
+	public void setCreatedAt(LocalDateTime createdAt) {
+	        this.createdAt = createdAt;
 	    }
 
 	public Boolean getIsVisible() {
@@ -132,6 +121,7 @@ public class Testimonials {
 
 	@PrePersist
     protected void onCreate() {
-        this.createDat = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
+
 }
