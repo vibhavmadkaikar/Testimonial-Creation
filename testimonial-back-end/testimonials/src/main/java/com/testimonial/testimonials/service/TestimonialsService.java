@@ -17,11 +17,10 @@ public interface TestimonialsService {
 	public boolean updateTestimonials(Integer testimonialId, TestimonialsDTO dto);
 
 	public boolean deletetestimonials(Integer testimonialId);
-	
-//	public List<TestimonialsDTO> getTestimonialsByUser(String username);
-	
-//	public List<TestimonialsDTO> getTestimonialsByUserId(Integer userId);
-	
-	public List<TestimonialUserDTO> getTestimonialsByUser(String username);
+
+
+	public List<TestimonialUserDTO> getTestimonialsByUser(String username, String token);
+
+	public List<TestimonialUserDTO> getTestimonialsByCustomerId(Integer customerId, String token); 
 
 }
