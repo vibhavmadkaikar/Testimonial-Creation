@@ -6,12 +6,11 @@ public class CustomersDto {
 	private String customerName;
 	private String customerEmail;
 	private String password;
-	private String description;
 
 	public Integer getCustomerId() {
 		return customerId;
 	}
-	
+
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
@@ -40,20 +39,11 @@ public class CustomersDto {
 		this.password = password;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public CustomersDto() {
 		super();
 		this.customerName = "";
 		this.customerEmail = "";
 		this.password = "";
-		this.description = "";
 	}
 
 }
