@@ -1,23 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import '../bodyStyle.css'
+import Navigation from '../nav-component/Navigation';
 
 function SignIn() {
     return (
-        <div>
-            <div className="home-page">
-                <nav>
-                    <div className="logo">Testimonial</div>
-                    <ul>
-                        <li><a href="#">Customers</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Integrations</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">EN</a></li>
-                        <li><Link to="/signin" className="sign-in">Sign in</Link></li>
-                        <li><Link to="/signup" className="sign-up">Sign up</Link></li>
-                    </ul>
-                </nav>
-            </div>
+        <>
+            <Navigation />
 
             <div className='body-container'>
                 <div style={styles.card}>
@@ -28,7 +17,7 @@ function SignIn() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
@@ -59,7 +48,7 @@ const styles = {
         padding: '12px 20px',
         fontSize: '18px',
         color: '#fff',
-        backgroundColor: '#007BFF',
+        backgroundColor: 'rgb(51 101 155)',
         textDecoration: 'none',
         borderRadius: '8px',
         fontWeight: 'bold',
