@@ -4,9 +4,9 @@ USE testimonialsdb;
 
 CREATE TABLE users (
     userid INT AUTO_INCREMENT,
-    username VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     domain VARCHAR(255) NOT NULL,
     
     CONSTRAINT pk_userid PRIMARY KEY (userid)
@@ -14,10 +14,9 @@ CREATE TABLE users (
     
 CREATE TABLE customers (
     customerid INT AUTO_INCREMENT,
-    customername VARCHAR(255) NOT NULL,
-    customeremail VARCHAR(255) NOT NULL,
+    customername VARCHAR(255) NOT NULL UNIQUE,
+    customeremail VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
     
     CONSTRAINT pk_customer_id PRIMARY KEY (customerid)
 );
