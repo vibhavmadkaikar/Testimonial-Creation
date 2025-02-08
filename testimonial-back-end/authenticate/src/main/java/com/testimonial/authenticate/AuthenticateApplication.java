@@ -3,15 +3,13 @@ package com.testimonial.authenticate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@SpringBootApplication(scanBasePackages = {"com.testimonial.authenticate.controller","com.testimonial.authenticate.service"})
-@EntityScan(basePackages = {"com.testimonial.authenticate.entity"})
-@EnableJpaRepositories(basePackages = {"com.testimonial.authenticate.repository"})
-public class AuthenticateApplication {
+@SpringBootApplication
+@EnableDiscoveryClient
+public class AuthenticateApplication {	
 	
 	private final JdbcTemplate jdbcTemplate;
 

@@ -1,9 +1,5 @@
 package com.testimonial.authenticate.entity;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -34,9 +30,6 @@ public class Customers {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "description")
-	private String description;
-
 	public Integer getCustomerId() {
 		return customerId;
 	}
@@ -61,23 +54,8 @@ public class Customers {
 		return password;
 	}
 
-	public void setPassword(String password) throws NoSuchAlgorithmException {
-
-		MessageDigest md = MessageDigest.getInstance("MD5");
-
-		byte[] messageDigest = md.digest(password.getBytes());
-
-		BigInteger bigInt = new BigInteger(1, messageDigest);
-
-		this.password = bigInt.toString(16);
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Customers() {
@@ -85,7 +63,6 @@ public class Customers {
 		this.customerName = "";
 		this.customerEmail = "";
 		this.password = "";
-		this.description = "";
 	}
 
 }

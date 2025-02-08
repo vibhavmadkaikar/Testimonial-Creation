@@ -1,9 +1,5 @@
 package com.testimonial.authenticate.entity;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -13,11 +9,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "users")
 @DynamicInsert
 @DynamicUpdate
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Users {
 
 	@Id
@@ -37,15 +39,12 @@ public class Users {
 	@Column(name = "domain")
 	private String domain;
 
-	public Users() {
-		this.username = "";
-		this.password = "";
-		this.email = "";
-		this.domain = "";
-	}
-
 	public Integer getUserId() {
 		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -60,15 +59,8 @@ public class Users {
 		return password;
 	}
 
-	public void setPassword(String password) throws NoSuchAlgorithmException {
-
-		MessageDigest md = MessageDigest.getInstance("MD5");
-
-		byte[] messageDigest = md.digest(password.getBytes());
-
-		BigInteger bigInt = new BigInteger(1, messageDigest);
-
-		this.password = bigInt.toString(16);
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
